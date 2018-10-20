@@ -5,7 +5,6 @@
 //2009-05-03: Fixed bug with wrong RWDepth.
 //2009-06-12: Fixed ATTACH_VIRTUAL_DISK_FLAG enumeration change from Windows 7 beta to RC.
 
-
 using System;
 using System.Globalization;
 using System.IO;
@@ -94,11 +93,11 @@ namespace Vhdgamer.Common
                 _handle.SetHandleAsInvalid();
                 if ((res == NativeMethods.ERROR_FILE_NOT_FOUND) || (res == NativeMethods.ERROR_PATH_NOT_FOUND))
                 {
-                    throw new System.IO.FileNotFoundException("File not found.");
+                    throw new FileNotFoundException("File not found.");
                 }
                 else if (res == NativeMethods.ERROR_FILE_CORRUPT)
                 {
-                    throw new System.IO.InvalidDataException("File format not recognized.");
+                    throw new InvalidDataException("File format not recognized.");
                 }
                 else
                 {
@@ -240,15 +239,15 @@ namespace Vhdgamer.Common
                 _handle.SetHandleAsInvalid();
                 if ((res == NativeMethods.ERROR_FILE_NOT_FOUND) || (res == NativeMethods.ERROR_PATH_NOT_FOUND))
                 {
-                    throw new System.IO.FileNotFoundException("File not found.");
+                    throw new FileNotFoundException("File not found.");
                 }
                 else if (res == NativeMethods.ERROR_FILE_CORRUPT)
                 {
-                    throw new System.IO.InvalidDataException("File format not recognized.");
+                    throw new InvalidDataException("File format not recognized.");
                 }
                 else if (res == NativeMethods.ERROR_FILE_EXISTS)
                 {
-                    throw new System.IO.IOException("File already exists.");
+                    throw new IOException("File already exists.");
                 }
                 else if (res == NativeMethods.ERROR_INVALID_PARAMETER)
                 {
@@ -291,15 +290,15 @@ namespace Vhdgamer.Common
                 {
                     if ((res == NativeMethods.ERROR_FILE_NOT_FOUND) || (res == NativeMethods.ERROR_PATH_NOT_FOUND))
                     {
-                        throw new System.IO.FileNotFoundException("File not found.");
+                        throw new FileNotFoundException("File not found.");
                     }
                     else if (res == NativeMethods.ERROR_FILE_CORRUPT)
                     {
-                        throw new System.IO.InvalidDataException("File format not recognized.");
+                        throw new InvalidDataException("File format not recognized.");
                     }
                     else if (res == NativeMethods.ERROR_FILE_EXISTS)
                     {
-                        throw new System.IO.IOException("File already exists.");
+                        throw new IOException("File already exists.");
                     }
                     else
                     {
@@ -328,7 +327,7 @@ namespace Vhdgamer.Common
             }
             else if (res == NativeMethods.ERROR_ACCESS_DENIED)
             {
-                throw new System.IO.IOException("Access is denied.");
+                throw new IOException("Access is denied.");
             }
             else if (res == NativeMethods.ERROR_INVALID_HANDLE)
             {

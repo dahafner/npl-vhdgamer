@@ -5,18 +5,18 @@ using Vhdgamer.Common;
 
 namespace Vhdgamer.Forms
 {
-    public partial class FrmOptions : Form
+    public partial class FrmSettings : Form
     {
-        private readonly Options options;
+        private readonly Settings settings;
 
-        public FrmOptions(Options options)
+        public FrmSettings(Settings settings)
         {
-            if (options == null) throw new ArgumentNullException(nameof(options));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             this.InitializeComponent();
 
-            this.options = options;
-            this.TxtServerFolder.Text = this.options.VhdServerPath;
+            this.settings = settings;
+            this.TxtServerFolder.Text = this.settings.VhdServerPath;
         }
 
         private void BtnSelectServerFolder_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace Vhdgamer.Forms
 
         private void BtnOk_Click(object sender, EventArgs e)
         {
-            this.options.VhdServerPath = this.TxtServerFolder.Text;
+            this.settings.VhdServerPath = this.TxtServerFolder.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

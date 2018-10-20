@@ -9,13 +9,13 @@ namespace Vhdgamer.Forms
 {
     public partial class FrmDeleter : Form
     {
-        private readonly Options options;
+        private readonly Settings settings;
 
-        public FrmDeleter(Options options)
+        public FrmDeleter(Settings settings)
         {
             this.InitializeComponent();
 
-            this.options = options;
+            this.settings = settings;
         }
 
         private void FrmDelete_Load(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace Vhdgamer.Forms
                 this.LbxGames.Enabled = false;
                 foreach (FileInfo filocal in this.LbxGames.CheckedItems)
                 {
-                    string localfilename = Application.StartupPath + @"\" + this.options.VhdLocalPath + @"\" + filocal.Name;
+                    string localfilename = Application.StartupPath + @"\" + this.settings.VhdLocalPath + @"\" + filocal.Name;
                     if (File.Exists(localfilename))
                     {
                         FileSystem.DeleteFile(localfilename);
@@ -44,7 +44,7 @@ namespace Vhdgamer.Forms
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Something went wrong while deleting the games:\r\n\r\n" + ex, "Vhdgamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Something went wrong while deleting the games:\r\n\r\n" + ex);
             }
 
             this.UpdateGameList();
@@ -63,7 +63,7 @@ namespace Vhdgamer.Forms
             this.LbxGames.Sorted = false;
             this.LbxGames.Items.Clear();
 
-            var localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.options.VhdLocalPath);
+            var localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.settings.VhdLocalPath);
             var finfos = localdir.GetFiles("*.vhd");
             foreach (FileInfo filocal in localdir.GetFiles("*.vhd"))
             {

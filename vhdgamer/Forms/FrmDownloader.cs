@@ -9,17 +9,17 @@ namespace Vhdgamer.Forms
 {
     public partial class FrmDownloader : Form
     {
-        private readonly Options options;
+        private readonly Settings settings;
         private readonly NotifyIcon trayIcon;
 
-        public FrmDownloader(Options options, NotifyIcon trayIcon)
+        public FrmDownloader(Settings settings, NotifyIcon trayIcon)
         {
             this.InitializeComponent();
 
-            this.options = options;
+            this.settings = settings;
             this.trayIcon = trayIcon;
 
-            this.LblGamelist.Text += " (Server: " + this.options.VhdServerPath + ")";
+            this.LblGamelist.Text += " (Server: " + this.settings.VhdServerPath + ")";
         }
 
         private void DownloaderForm_Load(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace Vhdgamer.Forms
             this.LbxGames.Enabled = false;
             foreach (FileInfo fiserver in this.LbxGames.CheckedItems)
             {
-                string localfilename = Application.StartupPath + @"\" + this.options.VhdLocalPath + @"\" + fiserver.Name;
+                string localfilename = Application.StartupPath + @"\" + this.settings.VhdLocalPath + @"\" + fiserver.Name;
                 if (!File.Exists(localfilename))
                 {
                     try
@@ -65,13 +65,13 @@ namespace Vhdgamer.Forms
             this.LbxGames.Sorted = false;
             this.LbxGames.Items.Clear();
 
-            var localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.options.VhdLocalPath);
-            var serverdir = new DirectoryInfo(this.options.VhdServerPath);
+            var localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.settings.VhdLocalPath);
+            var serverdir = new DirectoryInfo(this.settings.VhdServerPath);
 
             // if the server directory doesn't exists or isn't reachable
             if (!serverdir.Exists)
             {
-                MessageBox.Show("Server path \"" + serverdir.FullName + "\" not accessible", "Vhdgamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Server path \"" + serverdir.FullName + "\" not accessible");
                 this.Cursor = Cursors.Default;
                 this.Close();
                 return;

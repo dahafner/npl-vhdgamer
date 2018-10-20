@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Threading;
 
 using Vhdgamer.Forms;
+using Vhdgamer.Common;
 
 namespace Vhdgamer
 {
@@ -21,7 +22,7 @@ namespace Vhdgamer
             }
             else
             {
-                MessageBox.Show("Vhdgamer is already running.", "VhdGamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Vhdgamer is already running.");
             }
 
             Application.Exit();

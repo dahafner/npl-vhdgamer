@@ -1,6 +1,6 @@
 ﻿namespace Vhdgamer.Forms
 {
-    partial class FrmOptions
+    partial class FrmSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOptions));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnSelectServerFolder = new System.Windows.Forms.Button();
             this.TxtServerFolder = new System.Windows.Forms.TextBox();
@@ -95,7 +95,7 @@
             // 
             this.FbdServerpath.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
-            // FrmOptions
+            // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,9 +107,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmOptions";
+            this.Name = "FrmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Options";
+            this.Text = "Settings";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -41,25 +41,25 @@ namespace Vhdgamer.Forms
         {
             if (string.IsNullOrEmpty(this.TxtGameFolder.Text))
             {
-                MessageBox.Show("Please select a folder containing the desired game.", "Vhdgamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Please select a folder containing the desired game.");
                 return;
             }
 
             if (string.IsNullOrEmpty(this.TxtName.Text))
             {
-                MessageBox.Show("Please enter a game name.", "Vhdgamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Please enter a game name.");
                 return;
             }
 
             if (this.NudSize.Value <= 0)
             {
-                MessageBox.Show("Size must be bigger than 0.", "Vhdgamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Size must be bigger than 0.");
                 return;
             }
 
             if (string.IsNullOrEmpty(this.TxtSaveFileName.Text))
             {
-                MessageBox.Show("Please select a save filepath.", "Vhdgamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Please select a save filepath.");
                 return;
             }
 

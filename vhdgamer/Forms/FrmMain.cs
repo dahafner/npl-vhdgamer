@@ -14,7 +14,7 @@ namespace Vhdgamer.Forms
         private static IntPtr runningGameHandle;
 
         private readonly NotifyIcon trayIcon;
-        private readonly Options options;
+        private readonly Settings settings;
         private readonly ContextMenu trayMenu;
 
         private VirtualDisk virtualDisk;
@@ -24,18 +24,18 @@ namespace Vhdgamer.Forms
             // Load settings
             try
             {
-                this.options = new Options();
+                this.settings = new Settings();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Something went wrong while loading the settings:\n\n" + ex, "VhdGamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("Something went wrong while loading the settings:\n\n" + ex);
                 Application.Exit();
             }
 
             // Create vhdpath directory, if it doesnt exist
-            if (!Directory.Exists(Application.StartupPath + @"\" + this.options.VhdLocalPath))
+            if (!Directory.Exists(Application.StartupPath + @"\" + this.settings.VhdLocalPath))
             {
-                Directory.CreateDirectory(Application.StartupPath + @"\" + this.options.VhdLocalPath);
+                Directory.CreateDirectory(Application.StartupPath + @"\" + this.settings.VhdLocalPath);
             }
 
             // Create a tray icon
@@ -67,12 +67,12 @@ namespace Vhdgamer.Forms
         {
             ////if (runningGameHandle.ToInt32() != 0)
             ////{
-            ////    MessageBox.Show("It's not recommenced to start more than one game at a time!");
+            ////    MessageboxHelper.ShowErrorMessageBox("It's not recommenced to start more than one game at a time!");
             ////}
 
             var gameName = (sender as MenuItem).Text;
 
-            var path = Application.StartupPath + @"\" + this.options.VhdLocalPath + @"\" + gameName + @".vhd";
+            var path = Application.StartupPath + @"\" + this.settings.VhdLocalPath + @"\" + gameName + @".vhd";
 
             Cursor.Current = Cursors.WaitCursor;
             this.trayIcon.ShowBalloonTip(1000, "vhdgamer", "Starting \"" + gameName + "\"...", ToolTipIcon.Info);
@@ -101,19 +101,19 @@ namespace Vhdgamer.Forms
 
         private void MnuShowDownloader_Click(object sender, EventArgs e)
         {
-            var downloaderForm = new FrmDownloader(this.options, this.trayIcon);
+            var downloaderForm = new FrmDownloader(this.settings, this.trayIcon);
             downloaderForm.ShowDialog();
         }
 
         private void MnuShowDeleter_Click(object sender, EventArgs e)
         {
-            var modalForm = new FrmDeleter(this.options);
+            var modalForm = new FrmDeleter(this.settings);
             modalForm.ShowDialog();
         }
 
-        private void MnuShowOptions_Click(object sender, EventArgs e)
+        private void MnuShowSettings_Click(object sender, EventArgs e)
         {
-            var modalForm = new FrmOptions(this.options);
+            var modalForm = new FrmSettings(this.settings);
             if (modalForm.ShowDialog() == DialogResult.OK)
             {
                 this.UpdateContextMenu();
@@ -151,7 +151,7 @@ namespace Vhdgamer.Forms
             this.trayMenu.MenuItems.Clear();
 
             // get all games and add them to the context menu
-            var di = new DirectoryInfo(Application.StartupPath + @"\" + this.options.VhdLocalPath);
+            var di = new DirectoryInfo(Application.StartupPath + @"\" + this.settings.VhdLocalPath);
             var files = di.GetFiles("*.vhd");
 
             foreach (var fi in files)
@@ -165,9 +165,10 @@ namespace Vhdgamer.Forms
             }
 
             this.trayMenu.MenuItems.Add("Downloader...", this.MnuShowDownloader_Click);
-            this.trayMenu.MenuItems.Add("Clean Up...", this.MnuShowDeleter_Click);
-            this.trayMenu.MenuItems.Add("Options...", this.MnuShowOptions_Click);
-            this.trayMenu.MenuItems.Add("Create VHD", this.MnuCreate_Click);
+            this.trayMenu.MenuItems.Add("Clean up...", this.MnuShowDeleter_Click);
+            this.trayMenu.MenuItems.Add("-");
+            this.trayMenu.MenuItems.Add("Settings...", this.MnuShowSettings_Click);
+            this.trayMenu.MenuItems.Add("Create new vhd...", this.MnuCreate_Click);
             this.trayMenu.MenuItems.Add("-");
             this.trayMenu.MenuItems.Add("Exit", OnExit);
         }
@@ -194,7 +195,7 @@ namespace Vhdgamer.Forms
 
         private void Play()
         {
-            var startpath = File.ReadAllText(this.virtualDisk.GetDriveLetter() + @"\" + this.options.StarterFilename);
+            var startpath = File.ReadAllText(this.virtualDisk.GetDriveLetter() + @"\" + this.settings.StarterFilename);
 
             var startInfo = new ProcessStartInfo(this.virtualDisk.GetDriveLetter() + @"\" + startpath);
             startInfo.WorkingDirectory = Path.GetDirectoryName(this.virtualDisk.GetDriveLetter() + @"\" + startpath);

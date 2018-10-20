@@ -1,8 +1,6 @@
-﻿using Vhdgamer.Properties;
-
-namespace Vhdgamer.Common
+﻿namespace Vhdgamer.Common
 {
-    public class Options
+    public class Settings
     {
         private const string defaultVhdLocalPath = "vhds";
         private const string defaultVhdServerpath = @"\\games.noproblan.ch\storage\gamepack\vhds";
@@ -42,47 +40,47 @@ namespace Vhdgamer.Common
             }
         }
 
-        public Options()
+        public Settings()
         {
             this.Load();
         }
 
         private void Load()
         {
-            if (string.IsNullOrEmpty(Settings.Default.VhdLocalPath))
+            if (string.IsNullOrEmpty(Properties.Settings.Default.VhdLocalPath))
             {
                 this.vhdLocalPath = defaultVhdLocalPath;
             }
             else
             {
-                this.vhdLocalPath = Settings.Default.VhdLocalPath;
+                this.vhdLocalPath = Properties.Settings.Default.VhdLocalPath;
             }
 
-            if (string.IsNullOrEmpty(Settings.Default.VhdServerPath))
+            if (string.IsNullOrEmpty(Properties.Settings.Default.VhdServerPath))
             {
                 this.vhdServerPath = defaultVhdServerpath;
             }
             else
             {
-                this.vhdServerPath = Settings.Default.VhdServerPath;
+                this.vhdServerPath = Properties.Settings.Default.VhdServerPath;
             }
 
-            if (string.IsNullOrEmpty(Settings.Default.StarterFilename))
+            if (string.IsNullOrEmpty(Properties.Settings.Default.StarterFilename))
             {
                 this.starterFilename = defaultStarterFilename;
             }
             else
             {
-                this.starterFilename = Settings.Default.StarterFilename;
+                this.starterFilename = Properties.Settings.Default.StarterFilename;
             }
         }
 
         private void Save()
         {
-            Settings.Default.VhdLocalPath = this.VhdLocalPath;
-            Settings.Default.VhdServerPath = this.VhdServerPath;
-            Settings.Default.StarterFilename = this.StarterFilename;
-            Settings.Default.Save();
+            Properties.Settings.Default.VhdLocalPath = this.VhdLocalPath;
+            Properties.Settings.Default.VhdServerPath = this.VhdServerPath;
+            Properties.Settings.Default.StarterFilename = this.StarterFilename;
+            Properties.Settings.Default.Save();
         }
     }
 }
