@@ -1,6 +1,6 @@
-﻿using Gameclub.Apps.Vhdgamer.Properties;
+﻿using Vhdgamer.Properties;
 
-namespace Gameclub.Apps.Vhdgamer.Common
+namespace Vhdgamer.Common
 {
     public class Options
     {
@@ -51,29 +51,29 @@ namespace Gameclub.Apps.Vhdgamer.Common
         {
             if (string.IsNullOrEmpty(Settings.Default.VhdLocalPath))
             {
-                this.VhdLocalPath = defaultVhdLocalPath;
+                this.vhdLocalPath = defaultVhdLocalPath;
             }
             else
             {
-                this.VhdLocalPath = Settings.Default.VhdLocalPath;
+                this.vhdLocalPath = Settings.Default.VhdLocalPath;
             }
 
             if (string.IsNullOrEmpty(Settings.Default.VhdServerPath))
             {
-                this.VhdServerPath = defaultVhdServerpath;
+                this.vhdServerPath = defaultVhdServerpath;
             }
             else
             {
-                this.VhdServerPath = Settings.Default.VhdServerPath;
+                this.vhdServerPath = Settings.Default.VhdServerPath;
             }
 
             if (string.IsNullOrEmpty(Settings.Default.StarterFilename))
             {
-                this.StarterFilename = defaultStarterFilename;
+                this.starterFilename = defaultStarterFilename;
             }
             else
             {
-                this.StarterFilename = Settings.Default.StarterFilename;
+                this.starterFilename = Settings.Default.StarterFilename;
             }
         }
 

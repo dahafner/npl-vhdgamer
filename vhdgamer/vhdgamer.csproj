@@ -8,7 +8,7 @@
     <ProjectGuid>{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gameclub.Apps.Vhdgamer</RootNamespace>
+    <RootNamespace>Vhdgamer</RootNamespace>
     <AssemblyName>vhdgamer</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -52,7 +52,7 @@
     <ApplicationIcon>Actions-roll.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Gameclub.Apps.Vhdgamer.Program</StartupObject>
+    <StartupObject>Vhdgamer.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
@@ -71,27 +71,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\DownloaderForm.cs">
+    <Compile Include="Forms\FrmDownloader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DownloaderForm.Designer.cs">
-      <DependentUpon>DownloaderForm.cs</DependentUpon>
+    <Compile Include="Forms\FrmDownloader.Designer.cs">
+      <DependentUpon>FrmDownloader.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DeleterForm.cs">
+    <Compile Include="Forms\FrmDeleter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DeleterForm.Designer.cs">
-      <DependentUpon>DeleterForm.cs</DependentUpon>
+    <Compile Include="Forms\FrmDeleter.Designer.cs">
+      <DependentUpon>FrmDeleter.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Options.cs" />
-    <Compile Include="Forms\SysTrayApp.cs">
+    <Compile Include="Forms\FrmOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmOptions.Designer.cs">
+      <DependentUpon>FrmOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Common\VirtualDisk.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\DownloaderForm.resx">
-      <DependentUpon>DownloaderForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmDeleter.resx">
+      <DependentUpon>FrmDeleter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDownloader.resx">
+      <DependentUpon>FrmDownloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmOptions.resx">
+      <DependentUpon>FrmOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,8 +115,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\SysTrayApp.resx">
-      <DependentUpon>SysTrayApp.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

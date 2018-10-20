@@ -2,16 +2,14 @@
 using System.Windows.Forms;
 using System.Threading;
 
-namespace Gameclub.Apps.Vhdgamer
+using Vhdgamer.Forms;
+
+namespace Vhdgamer
 {
     public static class Program
     {
-        // for checking if application already started
-        private static Mutex AppMutex = new Mutex(false, "MainApp");
+        private static Mutex AppMutex = new Mutex(false, "VhdGamerMainApp");
 
-        /// <summary>
-        /// Der Haupteinstiegspunkt für die Anwendung.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -19,11 +17,11 @@ namespace Gameclub.Apps.Vhdgamer
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new SysTrayApp());
+                Application.Run(new FrmMain());
             }
             else
             {
-                MessageBox.Show("Vhdgamer is already running. Check your SysTray for a black dice symbol.");
+                MessageBox.Show("Vhdgamer is already running.", "VhdGamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Application.Exit();
