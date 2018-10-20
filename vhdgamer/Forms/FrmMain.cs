@@ -120,6 +120,12 @@ namespace Vhdgamer.Forms
             }
         }
 
+        private void MnuCreate_Click(object sender, EventArgs e)
+        {
+            var creator = new FrmCreator();
+            creator.ShowDialog();
+        }
+
         private void OnExit(object sender, EventArgs e)
         {
             if (this.virtualDisk != null)
@@ -161,6 +167,7 @@ namespace Vhdgamer.Forms
             this.trayMenu.MenuItems.Add("Downloader...", this.MnuShowDownloader_Click);
             this.trayMenu.MenuItems.Add("Clean Up...", this.MnuShowDeleter_Click);
             this.trayMenu.MenuItems.Add("Options...", this.MnuShowOptions_Click);
+            this.trayMenu.MenuItems.Add("Create VHD", this.MnuCreate_Click);
             this.trayMenu.MenuItems.Add("-");
             this.trayMenu.MenuItems.Add("Exit", OnExit);
         }
@@ -194,6 +201,20 @@ namespace Vhdgamer.Forms
             var process = Process.Start(startInfo);
             runningGameHandle = process.Handle;
             process.WaitForExit();
+        }
+
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
+            this.SuspendLayout();
+            // 
+            // FrmMain
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FrmMain";
+            this.ResumeLayout(false);
+
         }
     }
 }

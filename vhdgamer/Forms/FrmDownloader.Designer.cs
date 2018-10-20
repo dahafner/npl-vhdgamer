@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDownloader));
             this.BtnClose = new System.Windows.Forms.Button();
             this.LblGamelist = new System.Windows.Forms.Label();
             this.LbxGames = new System.Windows.Forms.CheckedListBox();
@@ -86,6 +87,7 @@
             this.Controls.Add(this.LbxGames);
             this.Controls.Add(this.LblGamelist);
             this.Controls.Add(this.BtnClose);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(300, 200);
             this.Name = "FrmDownloader";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -17,13 +17,11 @@ using System.Management;
 
 namespace Vhdgamer.Common
 {
-
     /// <summary>
     /// Manipulation with Virtual Disk files.
     /// </summary>
     public class VirtualDisk : IDisposable
     {
-
         private NativeMethods.VirtualDiskSafeHandle _handle = new NativeMethods.VirtualDiskSafeHandle();
         private NativeOverlapped _createOverlap;
         private ManualResetEvent _createOverlapEvent;
