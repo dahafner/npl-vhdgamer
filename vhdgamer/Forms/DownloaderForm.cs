@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
+using Gameclub.Apps.Vhdgamer.Common;
 
-namespace vhdgamer
+namespace Gameclub.Apps.Vhdgamer
 {
-    public partial class downloaderForm : Form
+    public partial class DownloaderForm : Form
     {
-        public downloaderForm()
+        private readonly Options options;
+
+        public DownloaderForm(Options options)
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            this.options = options;
         }
 
         private void downloaderForm_Load(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace vhdgamer
             gameList.Enabled = false;
             foreach (FileInfo fiserver in gameList.CheckedItems)
             {
-                string localfilename = Application.StartupPath + @"\" + Options.vhdlocalpath + @"\" + fiserver.Name;
+                string localfilename = Application.StartupPath + @"\" + this.options.VhdLocalPath + @"\" + fiserver.Name;
                 if (!File.Exists(localfilename))
                 {
                     //fiserver.CopyTo(localfilename); // has no progess bar
@@ -61,8 +61,8 @@ namespace vhdgamer
             gameList.Sorted = false;
             gameList.Items.Clear();
 
-            DirectoryInfo localdir = new DirectoryInfo(Application.StartupPath + @"\" + Options.vhdlocalpath);
-            DirectoryInfo serverdir = new DirectoryInfo(Options.vhdserverpath);
+            DirectoryInfo localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.options.VhdLocalPath);
+            DirectoryInfo serverdir = new DirectoryInfo(this.options.VhdServerPath);
 
             // if the server directory doesn't exists or isn't reachable
             SysTrayApp.trayIcon.ShowBalloonTip(20, "vhdgamer", "Connecting to Server...", ToolTipIcon.Info);

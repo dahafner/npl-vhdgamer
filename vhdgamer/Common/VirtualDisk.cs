@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Management;
 
-namespace Medo.IO
+namespace Gameclub.Apps.Vhdgamer.Common
 {
 
     /// <summary>

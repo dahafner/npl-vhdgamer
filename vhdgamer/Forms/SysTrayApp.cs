@@ -4,24 +4,36 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection;
+using Gameclub.Apps.Vhdgamer.Common;
 
-namespace vhdgamer
+namespace Gameclub.Apps.Vhdgamer
 {
     public class SysTrayApp : Form
     {
         public static NotifyIcon trayIcon;
         private ContextMenu trayMenu;
+        private readonly Options options;
 
-        Medo.IO.VirtualDisk _disk;
+        VirtualDisk _disk;
         public static IntPtr runningGameHandle;
 
         public SysTrayApp()
         {
+            // Load settings
+            try
+            {
+                this.options = new Options();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the settings:\n\n" + ex, "VhdGamer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
 
             // create vhdpath directory, if it doesnt exist
-            if (!Directory.Exists(Application.StartupPath + @"\" + Options.vhdlocalpath))
+            if (!Directory.Exists(Application.StartupPath + @"\" + this.options.VhdLocalPath))
             {
-                Directory.CreateDirectory(Application.StartupPath + @"\" + Options.vhdlocalpath);
+                Directory.CreateDirectory(Application.StartupPath + @"\" + this.options.VhdLocalPath);
             }
 
             // Create a tray icon. In this example we use a
@@ -51,7 +63,7 @@ namespace vhdgamer
             trayMenu.MenuItems.Clear();
 
             // get all games and add them to the context menu
-            DirectoryInfo di = new DirectoryInfo(Application.StartupPath + @"\" + Options.vhdlocalpath);
+            DirectoryInfo di = new DirectoryInfo(Application.StartupPath + @"\" + this.options.VhdLocalPath);
             foreach (FileInfo fi in di.GetFiles("*.vhd"))
             {
                 trayMenu.MenuItems.Add(Path.GetFileNameWithoutExtension(fi.Name), trayMenu_Click); // remove vhd extension
@@ -76,7 +88,7 @@ namespace vhdgamer
                 MessageBox.Show("It's not recommenced to start more than one game at a time!");
             }
 
-            String path = Application.StartupPath + @"\" + Options.vhdlocalpath + @"\" + (sender as MenuItem).Text + @".vhd"; // add vhd extension
+            String path = Application.StartupPath + @"\" + this.options.VhdLocalPath + @"\" + (sender as MenuItem).Text + @".vhd"; // add vhd extension
 
             Cursor.Current = Cursors.WaitCursor;
             trayIcon.ShowBalloonTip(1000, "vhdgamer", "Mounting \"" + (sender as MenuItem).Text + "\"...", ToolTipIcon.Info);
@@ -111,13 +123,13 @@ namespace vhdgamer
 
         private void OnShowDownloader(object sender, EventArgs e)
         {
-            downloaderForm modalForm = new downloaderForm();
+            DownloaderForm modalForm = new DownloaderForm(this.options);
             modalForm.ShowDialog(this);
         }
 
         private void OnShowDeleter(object sender, EventArgs e)
         {
-            deleterForm modalForm = new deleterForm();
+            var modalForm = new DeleterForm(this.options);
             modalForm.ShowDialog(this);
         }
 
@@ -137,12 +149,12 @@ namespace vhdgamer
         {
             // open
             if (this._disk != null) { this._disk.Close(); }
-            this._disk = new Medo.IO.VirtualDisk(fi.FullName);
+            this._disk = new VirtualDisk(fi.FullName);
             this._disk.Open();
 
             // attach
             if (this._disk == null) { return; }
-            this._disk.Attach(Medo.IO.VirtualDiskAttachOptions.None);
+            this._disk.Attach(VirtualDiskAttachOptions.None);
         }
 
         public void umount(FileInfo fi)
@@ -154,7 +166,7 @@ namespace vhdgamer
 
         public void play()
         {
-            string startpath = System.IO.File.ReadAllText(this._disk.GetDriveLetter() + @"\" + Options.starterfilename);
+            string startpath = File.ReadAllText(this._disk.GetDriveLetter() + @"\" + this.options.StarterFilename);
 
             ProcessStartInfo startInfo = new ProcessStartInfo(this._disk.GetDriveLetter() + @"\" + startpath);
             startInfo.WorkingDirectory = Path.GetDirectoryName(this._disk.GetDriveLetter() + @"\" + startpath);

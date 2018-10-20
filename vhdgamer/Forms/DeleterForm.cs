@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
+using Gameclub.Apps.Vhdgamer.Common;
 
-namespace vhdgamer
+namespace Gameclub.Apps.Vhdgamer
 {
-    public partial class deleterForm : Form
+    public partial class DeleterForm : Form
     {
-        public deleterForm()
+        private readonly Options options;
+
+        public DeleterForm(Options options)
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            this.options = options;
         }
 
         private void closeDownloaderButton_Click(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace vhdgamer
             gameList.Enabled = false;
             foreach (FileInfo filocal in gameList.CheckedItems)
             {
-                string localfilename = Application.StartupPath + @"\" + Options.vhdlocalpath + @"\" + filocal.Name;
+                string localfilename = Application.StartupPath + @"\" + this.options.VhdLocalPath + @"\" + filocal.Name;
                 if (File.Exists(localfilename))
                 {
                     FileSystem.DeleteFile(localfilename);
@@ -49,8 +49,8 @@ namespace vhdgamer
             gameList.Sorted = false;
             gameList.Items.Clear();
 
-            DirectoryInfo localdir = new DirectoryInfo(Application.StartupPath + @"\" + Options.vhdlocalpath);
-            FileInfo[] finfos = localdir.GetFiles("*.vhd");
+            var localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.options.VhdLocalPath);
+            var finfos = localdir.GetFiles("*.vhd");
             foreach (FileInfo filocal in localdir.GetFiles("*.vhd"))
             {
                 gameList.Items.Add(filocal);
