@@ -14,6 +14,7 @@ Ideas for the future:
 - Moving the codebase to the latest .NET framework
 - Allowing the usage of vhdx files
 - Creating new virtual disks
-- Compacting virtual disks
+- Compacting virtual disks (to reduce transfer time)
 - Download over internet
 - Manage multiple server locations
+- Adding more information inside the virtual disk (for better differentiation)
