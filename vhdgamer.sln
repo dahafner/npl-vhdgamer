@@ -1,20 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vhdgamer", "vhdgamer\Vhdgamer.csproj", "{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VhdMountTest", "VhdMountTest\VhdMountTest.csproj", "{533974CA-1AD9-43A9-89CC-9A9C1150D51E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Debug|x86.ActiveCfg = Debug|x86
 		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Debug|x86.Build.0 = Debug|x86
+		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Release|Any CPU.ActiveCfg = Release|x86
 		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Release|x86.ActiveCfg = Release|x86
 		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Release|x86.Build.0 = Release|x86
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|x86.Build.0 = Debug|Any CPU
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|x86.ActiveCfg = Release|Any CPU
+		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
