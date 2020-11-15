@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vhdgamer", "vhdgamer\Vhdgamer.csproj", "{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VhdMountTest", "VhdMountTest\VhdMountTest.csproj", "{533974CA-1AD9-43A9-89CC-9A9C1150D51E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VhdMountTest", "VhdMountTest\VhdMountTest.csproj", "{533974CA-1AD9-43A9-89CC-9A9C1150D51E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VhdgamerNet5", "VhdgamerNet5\VhdgamerNet5.csproj", "{741B0599-375A-42F1-B3F7-5D079298FD33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,13 +24,20 @@ Global
 		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Release|x86.ActiveCfg = Release|x86
 		{60FC1FB5-7090-4837-92F6-DDA1A28EEB00}.Release|x86.Build.0 = Release|x86
 		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Debug|x86.Build.0 = Debug|Any CPU
 		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|x86.ActiveCfg = Release|Any CPU
 		{533974CA-1AD9-43A9-89CC-9A9C1150D51E}.Release|x86.Build.0 = Release|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Debug|x86.Build.0 = Debug|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Release|x86.ActiveCfg = Release|Any CPU
+		{741B0599-375A-42F1-B3F7-5D079298FD33}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

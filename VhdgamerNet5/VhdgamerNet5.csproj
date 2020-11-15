@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Actions-roll.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Actions-roll.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Actions-roll.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Discutils" Version="0.11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Forms\FrmCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmCreator.Designer.cs">
+      <DependentUpon>FrmCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Forms\FrmDeleter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmDeleter.Designer.cs">
+      <DependentUpon>FrmDeleter.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Forms\FrmDownloader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmDownloader.Designer.cs">
+      <DependentUpon>FrmDownloader.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Forms\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Forms\FrmCreator.resx">
+      <DependentUpon>FrmCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\FrmDeleter.resx">
+      <DependentUpon>FrmDeleter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\FrmDownloader.resx">
+      <DependentUpon>FrmDownloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
