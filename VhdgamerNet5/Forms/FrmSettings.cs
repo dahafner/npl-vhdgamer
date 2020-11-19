@@ -21,15 +21,24 @@ namespace Vhdgamer.Forms
 
         private void BtnSelectServerFolder_Click(object sender, EventArgs e)
         {
-            if (this.FbdServerpath.ShowDialog() == DialogResult.OK)
+            if (this.FbdServerPath.ShowDialog() == DialogResult.OK)
             {
-                this.TxtServerFolder.Text = this.FbdServerpath.SelectedPath;
+                this.TxtServerFolder.Text = this.FbdServerPath.SelectedPath;
+            }
+        }
+
+        private void BtnSelectLocalPath_Click(object sender, EventArgs e)
+        {
+            if (this.FbdLocalPath.ShowDialog() == DialogResult.OK)
+            {
+                this.TxtLocalFolder.Text = this.FbdLocalPath.SelectedPath;
             }
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
         {
             this.settingsService.SetVhdServerPath(this.TxtServerFolder.Text);
+            this.settingsService.SetVhdLocalPath(this.TxtLocalFolder.Text);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
