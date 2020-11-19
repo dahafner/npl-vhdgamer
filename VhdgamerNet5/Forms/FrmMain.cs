@@ -2,20 +2,19 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
-using System.Diagnostics;
 using System.Reflection;
 
 using Vhdgamer.Common;
-using System.ComponentModel;
+using Vhdgamer.Services;
 
 namespace Vhdgamer.Forms
 {
-    public class FrmMain : Form
+    public partial class FrmMain : Form
     {
         private static IntPtr runningGameHandle;
 
         private readonly NotifyIcon trayIcon;
-        private readonly Settings settings;
+        private readonly SettingsService settingsService;
         private readonly ContextMenuStrip trayMenu;
 
         //private VirtualDisk virtualDisk;
@@ -25,7 +24,7 @@ namespace Vhdgamer.Forms
             // Load settings
             try
             {
-                this.settings = new Settings();
+                this.settingsService = new SettingsService();
             }
             catch(Exception ex)
             {
@@ -34,9 +33,9 @@ namespace Vhdgamer.Forms
             }
 
             // Create vhdpath directory, if it doesnt exist
-            if (!Directory.Exists(Application.StartupPath + @"\" + this.settings.VhdLocalPath))
+            if (!Directory.Exists(Application.StartupPath + @"\" + this.settingsService.Settings.VhdLocalPath))
             {
-                Directory.CreateDirectory(Application.StartupPath + @"\" + this.settings.VhdLocalPath);
+                Directory.CreateDirectory(Application.StartupPath + @"\" + this.settingsService.Settings.VhdLocalPath);
             }
 
             // Create a tray icon
@@ -73,7 +72,7 @@ namespace Vhdgamer.Forms
 
             var gameName = (sender as ToolStripMenuItem).Text;
 
-            var path = Application.StartupPath + @"\" + this.settings.VhdLocalPath + @"\" + gameName + @".vhd";
+            var path = Application.StartupPath + @"\" + this.settingsService.Settings.VhdLocalPath + @"\" + gameName + @".vhd";
 
             Cursor.Current = Cursors.WaitCursor;
             this.trayIcon.ShowBalloonTip(1000, "vhdgamer", "Starting \"" + gameName + "\"...", ToolTipIcon.Info);
@@ -102,19 +101,19 @@ namespace Vhdgamer.Forms
 
         private void MnuShowDownloader_Click(object sender, EventArgs e)
         {
-            var downloaderForm = new FrmDownloader(this.settings, this.trayIcon);
+            var downloaderForm = new FrmDownloader(this.settingsService, this.trayIcon);
             downloaderForm.ShowDialog();
         }
 
         private void MnuShowDeleter_Click(object sender, EventArgs e)
         {
-            var modalForm = new FrmDeleter(this.settings);
+            var modalForm = new FrmDeleter(this.settingsService);
             modalForm.ShowDialog();
         }
 
         private void MnuShowSettings_Click(object sender, EventArgs e)
         {
-            var modalForm = new FrmSettings(this.settings);
+            var modalForm = new FrmSettings(this.settingsService);
             if (modalForm.ShowDialog() == DialogResult.OK)
             {
                 this.UpdateContextMenu();
@@ -137,22 +136,12 @@ namespace Vhdgamer.Forms
             Application.Exit();
         }
 
-        protected override void Dispose(bool isDisposing)
-        {
-            if (isDisposing)
-            {
-                trayIcon.Dispose();
-            }
-
-            base.Dispose(isDisposing);
-        }
-
         private void UpdateContextMenu()
         {
             this.trayMenu.Items.Clear();
 
             // get all games and add them to the context menu
-            var di = new DirectoryInfo(Application.StartupPath + @"\" + this.settings.VhdLocalPath);
+            var di = new DirectoryInfo(Path.Combine(Application.StartupPath, this.settingsService.Settings.VhdLocalPath));
             var files = di.GetFiles("*.vhd");
 
             foreach (var fi in files)
@@ -205,18 +194,6 @@ namespace Vhdgamer.Forms
             //process.WaitForExit();
         }
 
-        private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.SuspendLayout();
-            // 
-            // FrmMain
-            // 
-            this.ClientSize = new System.Drawing.Size(303, 278);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmMain";
-            this.ResumeLayout(false);
-
-        }
+        
     }
 }

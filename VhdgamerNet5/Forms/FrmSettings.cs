@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using Vhdgamer.Common;
+using Vhdgamer.Services;
 
 namespace Vhdgamer.Forms
 {
     public partial class FrmSettings : Form
     {
-        private readonly Settings settings;
+        private readonly SettingsService settingsService;
 
-        public FrmSettings(Settings settings)
+        public FrmSettings(SettingsService settingsService)
         {
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
+            if (settingsService == null) throw new ArgumentNullException(nameof(settingsService));
 
             this.InitializeComponent();
 
-            this.settings = settings;
-            this.TxtServerFolder.Text = this.settings.VhdServerPath;
+            this.settingsService = settingsService;
+            this.TxtServerFolder.Text = this.settingsService.Settings.VhdServerPath;
         }
 
         private void BtnSelectServerFolder_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace Vhdgamer.Forms
 
         private void BtnOk_Click(object sender, EventArgs e)
         {
-            this.settings.VhdServerPath = this.TxtServerFolder.Text;
+            this.settingsService.SetVhdServerPath(this.TxtServerFolder.Text);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

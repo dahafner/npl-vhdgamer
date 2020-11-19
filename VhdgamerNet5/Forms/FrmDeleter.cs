@@ -4,18 +4,19 @@ using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
 using Vhdgamer.Common;
+using Vhdgamer.Services;
 
 namespace Vhdgamer.Forms
 {
     public partial class FrmDeleter : Form
     {
-        private readonly Settings settings;
+        private readonly SettingsService settingsService;
 
-        public FrmDeleter(Settings settings)
+        public FrmDeleter(SettingsService settingsService)
         {
             this.InitializeComponent();
 
-            this.settings = settings;
+            this.settingsService = settingsService;
         }
 
         private void FrmDelete_Load(object sender, EventArgs e)
@@ -25,7 +26,8 @@ namespace Vhdgamer.Forms
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Delete " + this.LbxGames.CheckedItems.Count + " games?", "Vhdgamer", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK)
+            if (MessageBox.Show("Delete " + this.LbxGames.CheckedItems.Count + " games?", "Vhdgamer", 
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK)
             {
                 return;
             }
@@ -35,7 +37,7 @@ namespace Vhdgamer.Forms
                 this.LbxGames.Enabled = false;
                 foreach (FileInfo filocal in this.LbxGames.CheckedItems)
                 {
-                    string localfilename = Application.StartupPath + @"\" + this.settings.VhdLocalPath + @"\" + filocal.Name;
+                    string localfilename = Application.StartupPath + @"\" + this.settingsService.Settings.VhdLocalPath + @"\" + filocal.Name;
                     if (File.Exists(localfilename))
                     {
                         FileSystem.DeleteFile(localfilename);
@@ -63,7 +65,7 @@ namespace Vhdgamer.Forms
             this.LbxGames.Sorted = false;
             this.LbxGames.Items.Clear();
 
-            var localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.settings.VhdLocalPath);
+            var localdir = new DirectoryInfo(Application.StartupPath + @"\" + this.settingsService.Settings.VhdLocalPath);
             var finfos = localdir.GetFiles("*.vhd");
             foreach (FileInfo filocal in localdir.GetFiles("*.vhd"))
             {
